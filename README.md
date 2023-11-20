@@ -49,12 +49,12 @@ void loop()
 # 조도센서 빛의 양 확인(LED) - 김수지
 조도센서 및 식물 생장 LED 코드
 ```
-const int analogPin = A0;  // 조도센서가 연결된 아날로그 핀
-const int ledPin = 9;     // LED가 연결된 디지털 핀
+int analogPin = A0;  // 조도센서가 연결된 아날로그 핀
+int ledPin = 9;     // LED가 연결된 디지털 핀
 
 int totalLight = 0;       // 하루 동안의 누적 빛의 양을 저장하는 변수
 unsigned long previousMillis = 0;  // 이전에 조도를 측정한 시간을 저장하는 변수
-const long interval = 1000 * 60 * 60;  // 1시간마다 조도를 측정
+long interval = 1000 * 60 * 60;  // 1시간마다 조도를 측정
 
 void setup() {
   pinMode(ledPin, OUTPUT);
