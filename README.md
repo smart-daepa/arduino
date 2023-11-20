@@ -1,23 +1,59 @@
-# Arduino
-
----
 # 토양 수분 감지 및 워터 펌프 - 김건우
-대파의 적정 습도 - 40% ~ 70%
+**대파의 적정 습도 - 40% ~ 70%**
+
+-> 화분의 토양 습도가 40% ~ 70%를 유지하도록 워터펌프가 작동해야 함
+
+**토양 수분 감지 센서(YL-69)**
+
+-> 토양의 수분을 감지하는 데 사용, 이를 이용하여 자동 급수 시스템이나 식물의 토양의 수분을 모니터링할 수 있음.
+<br>-> 토양의 수분 함량이 높을수록 전류가 잘 흘려 저항이 낮아짐.
+<br>-> 토양의 수분 함량이 낮을수록 전류가 잘 흐르지 않아 저항이 높아짐.
+<br>-> 디지털 핀은 토양의 수분 함량이 미리 정의된 임계 값을 초과하면 LOW를 출력, 그렇지 않으면 HIGH를 출력
+<br>-> 아날로그 핀은 0 ~ 1023 사이의 저항 값을 측정
+
+
+<table border="1">
+  <tr>
+   <th colspan=5>
+     토양 수분 감지 센서 특징
+   </th>
+  </tr>
+  <tr>
+    <th>제품명</th>
+    <th>특징</th>
+    <th>입력 전압</th>
+    <th>출력 값</th>
+    <th>핀 배치</th>
+  </tr>
+  <tr>
+    <td rowspan="3">YL-69</td>
+    <td>아날로그 인터페이스</td>
+    <td>3.3V ~ 5V</td>
+    <td>마른 땅: 600 ~ 1000<br>젖은 땅: 370 ~ 600<br>물: 0 ~ 370</td>
+    <td>A0: 아날로그 핀<br>D0: 디지털 핀<br>VCC: 전원 공급<br>GND: 접지</td>
+  </tr>
+</table>
 
 
  토양 수분 감지 센서 모듈(YL-69) 예시 코드
 ```
+// YL-69 Soil Moisture Sensor
+
 void setup() {
   Serial.begin(9600);
 }
  
 void loop() {
   
-  int Soil_moisture = analogRead(A1);  
-  Serial.println(Soil_moisture);        
-  delay(100);
+  int Soil_moisture = analogRead(A1); // 아날로그 핀에서 값 가져오기
+  int humi = map(Soil_moisture, 0, 1023, 100, 0) // 아날로그 값을 퍼센트로 매핑
 
-* 출처 : 에듀이노
+  Serial.print("토양 습도(%) : ");
+  Serial.println(humi);
+        
+  delay(1000);
+
+
 ```
 
 
