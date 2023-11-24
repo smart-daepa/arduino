@@ -1,26 +1,29 @@
-#include <DHT.h>
+#include <DHT11.h>
 
-#define DHTPIN 2    
-#define DHTTYPE DHT11   
+int pin = 2;
+DHT11 dht11(pin);
 
-DHT dht(DHTPIN, DHTTYPE);
+String cmd = "temp";
+String input = "";
 
 void setup() {
   Serial.begin(9600);
-  dht.begin();
 }
 
 void loop() {
-  delay(100);
+  float temp, humi;
 
-  float h = dht.readHumidity();
-  float t = dht.readTemperature();
-
-  if (isnan(h) || isnan(t)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return;
+  if(Serial.available()){
+    input = Serial.readStringUntil('\n');
   }
 
-  Serial.println(h);
-  Serial.println(t);
+  if(Serial.available()==0 && input == cmd) {
+    dht11.read(humi, temp);
+    Serial.print(temp);
+    Serial.print(" ");
+    Serial.println(humi);
+    input = "";
+  }
+
+  delay(1000);
 }
