@@ -3,7 +3,7 @@ int digiPin = 9;     // 식물 생장 LED가 연결된 디지털 핀
 
 int totalLight = 0;       // 하루 동안의 누적 빛의 양을 저장하는 변수
 unsigned long previousMillis = 0;  // 이전에 조도를 측정한 시간을 저장하는 변수
-const long interval = 1000 * 60 * 60;  // 1시간마다 조도를 측
+const long interval = 1000 * 60 * 60;  // 1시간마다 조도를 측정
 
 void setup() {
   pinMode(digiPin, OUTPUT);
@@ -25,12 +25,12 @@ void loop() {
     Serial.print("누적 빛의 양: ");
     Serial.println(totalLight);
 
-    // 여기에서 조도센서 값을 기반으로 LED를 제어할 수 있습니다.
+    // 여기에서 조도센서 값을 기반으로 LED를 제어
     if (sensorValue < 400) {
-      digitalWrite(digiPin, LOW);  // 어두울 때 LED를 끔
+      digitalWrite(digiPin, LOW);  // 밝을 때 LED를 끔
       Serial.println("LED 끔");
     } else if (sensorValue >= 400) {
-      digitalWrite(digiPin, HIGH);   // 밝을 때 LED를 켬
+      digitalWrite(digiPin, HIGH);   // 어두울 때 LED를 켬
       Serial.println("LED 켬");
     }
   }
