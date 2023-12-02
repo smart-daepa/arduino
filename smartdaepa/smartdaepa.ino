@@ -20,7 +20,6 @@ void setup() {
 }
 
 void jodo() {
-  // 일정 간격마다 조도를 측정하고 누적 빛의 양을 계산
     int sensorValue = analogRead(analogPin);
 
     Serial.print("jodo ");
