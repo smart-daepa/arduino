@@ -23,11 +23,11 @@ void loop() {
       digitalWrite(YELLOW_PIN, LOW);
       digitalWrite(GREEN_PIN, HIGH);      
     } else if (sensorValue < 500) {
-      digitalWrite(RED_PIN, LOW);  // 밝을 때 LED를 끔
+      digitalWrite(RED_PIN, LOW);  //
       digitalWrite(YELLOW_PIN, HIGH);
       digitalWrite(GREEN_PIN, LOW);     
     } else {
-      digitalWrite(RED_PIN, HIGH);  // 밝을 때 LED를 끔
+      digitalWrite(RED_PIN, HIGH);  // 어두울 때 LED를 켬
       digitalWrite(YELLOW_PIN, LOW);
       digitalWrite(GREEN_PIN, LOW);
     }
